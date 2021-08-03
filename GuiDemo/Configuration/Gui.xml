@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GuiConfigurationToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GuiConstructionTokens>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.BaseGuiComponentToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.ButtonToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.CheckBoxToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.DialogToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.FillBarToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.LabelToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.PanelToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.RadioButtonToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Gui.dll</FileName>
+      <TypeName>Ox.Gui.Component.TextBoxToken</TypeName>
+    </ConstructionToken>
+  </GuiConstructionTokens>
+</GuiConfigurationToken>

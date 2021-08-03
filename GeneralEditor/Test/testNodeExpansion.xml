@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components />
+  <Groups>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>a2fb8ee0-0d52-4921-98cb-96765af2055c</Guid>
+      <Name>Group:a2fb8ee0-0d52-4921-98cb-96765af2055c</Name>
+      <Expanded>false</Expanded>
+    </GroupToken>
+    <GroupToken>
+      <ParentGuid>a2fb8ee0-0d52-4921-98cb-96765af2055c</ParentGuid>
+      <Guid>49e997a3-d6f8-431a-97c3-d78cebc06876</Guid>
+      <Name>Group:49e997a3-d6f8-431a-97c3-d78cebc06876</Name>
+    </GroupToken>
+    <GroupToken>
+      <ParentGuid>49e997a3-d6f8-431a-97c3-d78cebc06876</ParentGuid>
+      <Guid>b50712a1-5cef-4703-b4f1-de4b01f53f20</Guid>
+      <Name>Group:b50712a1-5cef-4703-b4f1-de4b01f53f20</Name>
+    </GroupToken>
+  </Groups>
+</GeneralDocumentToken>

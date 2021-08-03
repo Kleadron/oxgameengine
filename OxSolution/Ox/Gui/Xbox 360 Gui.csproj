@@ -1,0 +1,323 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectGuid>{69EC565A-9144-4358-BB8C-F4606E1432AF}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Xbox 360</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ox.Gui</RootNamespace>
+    <AssemblyName>Ox.Gui</AssemblyName>
+    <XnaFrameworkVersion>v3.1</XnaFrameworkVersion>
+    <XnaPlatform>Xbox 360</XnaPlatform>
+    <XnaCrossPlatformGroupID>d760c326-8ea2-4bee-9c18-c5f9bb804a82</XnaCrossPlatformGroupID>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <XnaUpgrade>
+    </XnaUpgrade>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Xbox 360' ">
+    <OutputPath>bin\Xbox 360\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE;XBOX;XBOX360</DefineConstants>
+    <NoWarn>1591</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Xbox 360\Debug\Ox.Gui.XML</DocumentationFile>
+    <XnaCompressContent>True</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Xbox 360' ">
+    <OutputPath>bin\Xbox 360\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;XBOX;XBOX360</DefineConstants>
+    <NoWarn>1591</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Xbox 360\Release\Ox.Gui.XML</DocumentationFile>
+    <XnaCompressContent>True</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Component\BaseGuiComponent.cs" />
+    <Compile Include="Component\BaseGuiComponentToken.cs" />
+    <Compile Include="Component\Button\Button.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Button\ButtonToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Button\ButtonView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\CheckBox\CheckBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\CheckBox\CheckBoxToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\CheckBox\CheckBoxView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Dialog\Dialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Dialog\DialogToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Dialog\DialogView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\FillBar\FillBar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\FillBar\FillBarToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\FillBar\FillBarView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\GuiComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\GuiSkinGroups.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\GuiView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\GuiViewFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\InterleavedComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Label\Label.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Label\LabelToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Label\LabelView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\MessageBox\MessageBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Mouse\MouseComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Panel\Panel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Panel\PanelToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Panel\PanelView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\Portal\Portal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\RadioButton\RadioButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\RadioButton\RadioButtonToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\RadioButton\RadioButtonView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\TextBox\TextBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\TextBox\TextBoxToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\TextBox\TextBoxView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\VirtualKeyboard\VirtualKeyboard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Event\AbstractEventForwarder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Event\ConcreteEventForwarder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Event\Event.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Event\EventForwarder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Event\KeyboardEventForwarder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Event\MouseEventForwarder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Font\IFont.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Font\MonospaceFont.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GuiConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GuiDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GuiDocumentLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GuiDocumentToken.cs" />
+    <Compile Include="GuiHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GuiSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Input\InputRouter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Input\RepeatRate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickSprite\QuickSprite.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QuickSprite\QuickSpriteBatch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QuickSprite\QuickSpriteDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QuickSprite\VertexQuickSprite.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SkinGroup\BorderSkinGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SkinGroup\ImageSkinGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SkinGroup\QuickSpriteSkinGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SkinGroup\TextSkinGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewElement\Border.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewElement\Image.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewElement\IText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewElement\IViewElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewElement\MonospaceText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <NestedContentProject Include="Content\Content.contentproj">
+      <Project>0c6d4f5c-0f41-4e44-aae0-309ad0f62109</Project>
+      <Visible>False</Visible>
+    </NestedContentProject>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=1c9e259686f921e0, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=1c9e259686f921e0, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\Xbox 360 Engine.csproj">
+      <Project>{704ec7aa-ade2-4385-965f-13ee098cdce8}</Project>
+      <Name>Xbox 360 Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

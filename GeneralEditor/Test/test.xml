@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken>
+      <ParentGuid>0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</ParentGuid>
+      <Guid>da87f4e7-0a8e-447a-a550-aff2d731d969</Guid>
+      <Name>Component:da87f4e7-0a8e-447a-a550-aff2d731d969</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</ParentGuid>
+      <Guid>79f5559d-4151-4900-9dd9-cad7e7c86e5a</Guid>
+      <Name>Component:79f5559d-4151-4900-9dd9-cad7e7c86e5a</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</ParentGuid>
+      <Guid>3f838129-ac1a-47a7-9427-b471a9ba0b72</Guid>
+      <Name>Component:3f838129-ac1a-47a7-9427-b471a9ba0b72</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</ParentGuid>
+      <Guid>edfb4411-2558-4d4a-a184-36cfcad8b1da</Guid>
+      <Name>Component:edfb4411-2558-4d4a-a184-36cfcad8b1da</Name>
+    </ComponentToken>
+    <ComponentToken xsi:type="UpdateableComponentToken">
+      <ParentGuid>6c0d1816-23d8-4003-956b-727927e40b0e</ParentGuid>
+      <Guid>f65c0b9c-1dab-451f-9b92-a6a473855ca4</Guid>
+      <Name>UpdateableComponent:f65c0b9c-1dab-451f-9b92-a6a473855ca4</Name>
+    </ComponentToken>
+    <ComponentToken xsi:type="UpdateableComponentToken">
+      <ParentGuid>6c0d1816-23d8-4003-956b-727927e40b0e</ParentGuid>
+      <Guid>eb6dd807-dec7-4efa-b85a-903223ea79d9</Guid>
+      <Name>UpdateableComponent:eb6dd807-dec7-4efa-b85a-903223ea79d9</Name>
+    </ComponentToken>
+    <ComponentToken xsi:type="UpdateableComponentToken">
+      <ParentGuid>744a0825-b449-4e27-887b-e359ac9fd431</ParentGuid>
+      <Guid>dc5660ed-da2f-4b13-acb2-64e071cf87e4</Guid>
+      <Name>UpdateableComponent:dc5660ed-da2f-4b13-acb2-64e071cf87e4</Name>
+    </ComponentToken>
+    <ComponentToken xsi:type="UpdateableComponentToken">
+      <ParentGuid>744a0825-b449-4e27-887b-e359ac9fd431</ParentGuid>
+      <Guid>c81d7fb1-9961-4dea-86f0-1ee2698d2c92</Guid>
+      <Name>UpdateableComponent:c81d7fb1-9961-4dea-86f0-1ee2698d2c92</Name>
+    </ComponentToken>
+  </Components>
+  <Groups>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</Guid>
+      <Name>Group:0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</Name>
+    </GroupToken>
+    <GroupToken>
+      <ParentGuid>0a2b5d9a-7f0b-46c6-aef2-d9e48d6951dc</ParentGuid>
+      <Guid>6c0d1816-23d8-4003-956b-727927e40b0e</Guid>
+      <Name>Group:6c0d1816-23d8-4003-956b-727927e40b0e</Name>
+      <Expanded>false</Expanded>
+    </GroupToken>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>744a0825-b449-4e27-887b-e359ac9fd431</Guid>
+      <Name>Group:744a0825-b449-4e27-887b-e359ac9fd431</Name>
+    </GroupToken>
+  </Groups>
+</GeneralDocumentToken>

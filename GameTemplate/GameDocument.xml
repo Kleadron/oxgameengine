@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>b543184a-da37-4a43-9d45-0b4c373e3a2b</Guid>
+      <Expanded>true</Expanded>
+      <Name>Game</Name>
+      <ScriptData />
+      <ScriptClass>GameTemplate.GameScript</ScriptClass>
+    </ComponentToken>
+  </Components>
+  <Groups />
+</GeneralDocumentToken>

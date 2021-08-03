@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken>
+      <ParentGuid>3354aa1f-02b8-4586-93fd-e47ce81acf70</ParentGuid>
+      <Guid>7a123fe1-895f-4a15-8327-17606a89d1ab</Guid>
+      <Name>Component:7a123fe1-895f-4a15-8327-17606a89d1ab</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>26b28e69-6b3a-4355-bd6f-f7ed55a62f31</ParentGuid>
+      <Guid>bffa96e0-3b2d-4ec9-83da-b94c9eca2604</Guid>
+      <Name>Component:bffa96e0-3b2d-4ec9-83da-b94c9eca2604</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>26b28e69-6b3a-4355-bd6f-f7ed55a62f31</ParentGuid>
+      <Guid>e7baac62-18ff-47d7-9125-e00d55081eee</Guid>
+      <Name>Component:e7baac62-18ff-47d7-9125-e00d55081eee</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>23430f84-3c32-4ec1-b28e-b2f69a14a8cb</ParentGuid>
+      <Guid>0e4257e7-8b14-420e-a8dc-04f63f4482a2</Guid>
+      <Name>Component:0e4257e7-8b14-420e-a8dc-04f63f4482a2</Name>
+    </ComponentToken>
+  </Components>
+  <Groups>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>23430f84-3c32-4ec1-b28e-b2f69a14a8cb</Guid>
+      <Name>Group:23430f84-3c32-4ec1-b28e-b2f69a14a8cb</Name>
+    </GroupToken>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>3354aa1f-02b8-4586-93fd-e47ce81acf70</Guid>
+      <Name>Group:3354aa1f-02b8-4586-93fd-e47ce81acf70</Name>
+    </GroupToken>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>26b28e69-6b3a-4355-bd6f-f7ed55a62f31</Guid>
+      <Name>Group:26b28e69-6b3a-4355-bd6f-f7ed55a62f31</Name>
+    </GroupToken>
+  </Groups>
+</GeneralDocumentToken>

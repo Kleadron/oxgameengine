@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SceneDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken xsi:type="SceneComponentToken">
+      <ParentGuid>31651f55-f1a4-456c-9708-edfea287714f</ParentGuid>
+      <Guid>b1ded845-a3be-4704-a326-986a37d18341</Guid>
+      <Name>DuplicateName</Name>
+      <Position>
+        <X>5</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+    </ComponentToken>
+    <ComponentToken xsi:type="SceneComponentToken">
+      <ParentGuid>31651f55-f1a4-456c-9708-edfea287714f</ParentGuid>
+      <Guid>789244cc-45b0-4352-969d-a5a5f141090f</Guid>
+      <Name>DuplicateName</Name>
+      <Position>
+        <X>-14</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+    </ComponentToken>
+  </Components>
+  <Groups>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>31651f55-f1a4-456c-9708-edfea287714f</Guid>
+      <Name>HelloGroup:31651f55-f1a4-456c-9708-edfea287714f</Name>
+    </GroupToken>
+  </Groups>
+  <CameraPosition>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>100</Z>
+  </CameraPosition>
+  <CameraOrientation>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>0</Z>
+  </CameraOrientation>
+  <PositionSnap>1</PositionSnap>
+  <ScaleSnap>0.125</ScaleSnap>
+  <OrientationSnap>15</OrientationSnap>
+  <CreationDepth>100</CreationDepth>
+</SceneDocumentToken>

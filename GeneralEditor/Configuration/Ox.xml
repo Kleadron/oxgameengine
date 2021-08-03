@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OxConfigurationToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <VirtualResolution>
+    <X>1280</X>
+    <Y>720</Y>
+  </VirtualResolution>
+  <EngineConstructionToken>
+    <FileName>Ox.DefaultEngine.dll</FileName>
+    <TypeName>Ox.DefaultEngineNamespace.DefaultEngine</TypeName>
+  </EngineConstructionToken>
+  <ScriptsFileName>Ox.Scripts.dll</ScriptsFileName>
+  <ContentRootDirectory>Content</ContentRootDirectory>
+  <Platform>Windows</Platform>
+  <SafeZoneMultiplier>0.9</SafeZoneMultiplier>
+  <Development>true</Development>
+  <ReferenceDrawing>false</ReferenceDrawing>
+  <DepthStencilBufferSize>2</DepthStencilBufferSize>
+  <EncapsulateScriptedComponents>true</EncapsulateScriptedComponents>
+  <IsFixedTimeStep>true</IsFixedTimeStep>
+  <GeneralConstructionTokens>
+    <ConstructionToken>
+      <FileName>Ox.Engine.dll</FileName>
+      <TypeName>Ox.Engine.Component.ComponentToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Engine.dll</FileName>
+      <TypeName>Ox.Engine.Component.UpdateableComponentToken</TypeName>
+    </ConstructionToken>
+    <ConstructionToken>
+      <FileName>Ox.Engine.dll</FileName>
+      <TypeName>Ox.Engine.Component.TransformableComponentToken</TypeName>
+    </ConstructionToken>
+  </GeneralConstructionTokens>
+</OxConfigurationToken>

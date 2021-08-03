@@ -1,0 +1,141 @@
+****************
+* Improving Ox *
+****************
+
+* Refactoring *
+Remove deprecated script properties property.
+Introduce Overlay service.
+
+* Editors *
+Implement multiple item selection in gui.
+Store snap setting in gui document.
+Improve or replace treeview so that multiple item selection works on it.
+Implement gui transform widget.
+Implement scene editor transform widget.
+Implement subcomponent editing in editors.
+
+* Engine *
+Increase unit test coverage.
+Fix cracks in Xbox sky box.
+Make sky box work in orthographic view.
+Make orthographic shadow maps cascade.
+Fix mangled Ox assembly references when converting an x86 Ox Game to an Xbox 360 Ox Game.
+Implement remaining scene components (or find others who want to).
+Implement any extra needed gui components (or find others who want to).
+
+* Documentation *
+Add AutoBox explanation to documentation.
+Build Game Creation How-To document.
+Build automated documentation using SandCastle.
+
+*************
+* Fixing Ox *
+*************
+
+Do TODOs
+Answer QUESTIONs
+Fix BUGs, MAGICVALUEs, MEMORYCHURNs, HACKs, and SLOWs
+
+*******************************
+* Building the Setup project. *
+*******************************
+
+Building the Setup project is sadly specific. This can only be done from the OxPro.sln solution.
+
+You must -
+1) Be in Release build mode.
+2) Be in x86 build mode.
+3) Right-click the Tools solution folder, then click Build.
+4) Right-click the Xbox 360/Libraries folder, then click Build.
+5) Right-click the Setup project, then click Build.
+6) If everything goes peaches you're done building (and you will have a bunch of warnings that you can ignore).
+7) Optionally, right click the Setup project again, then click Install.
+
+********************************
+* Building the script template *
+********************************
+
+Item name -
+Ox Script
+
+Description -
+Create a new script for your Ox Game Engine game.
+
+Change default item name to -
+<DefaultName>OxScript.cs</DefaultName>
+
+*********************************
+* Building the project template *
+*********************************
+
+For information on how to hack together the game project template, see
+http://msdn.microsoft.com/en-us/library/dd282481.aspx
+
+What follows are some truncated instructions for my own use.
+
+Template name -
+Ox Game
+
+Template description -
+Create a new game using the Ox Game Engine.
+
+Change default project name to -
+<DefaultName>OxGame</DefaultName>
+
+Place inside <TemplateData> -
+<PromptForSaveOnCreation>true</PromptForSaveOnCreation>|
+
+Place AFTER </TemplateContent> -
+<WizardExtension>
+  <Assembly>Microsoft.Xna.GameStudio, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d</Assembly>
+  <FullClassName>Microsoft.Xna.GameStudio.Wizards.NestedProjectWizard</FullClassName>
+</WizardExtension>
+<WizardData>
+  <Folder Name="Content" TargetFolderName="Content">
+    <ProjectItem ReplaceParameters="true" TargetFileName="Content.contentproj">Content.contentproj</ProjectItem>
+    ********************************
+    * Content "Folder"s goes here! *
+    ********************************
+  </Folder>
+</WizardData>
+
+Replace in Content.contentproj... -
+
+    <Reference Include="XNAnimationPipeline, Version=0.7.0.0, Culture=neutral, PublicKeyToken=4bea05dc7a5b1e4f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\XNAnimationBin\x86\XNAnimationPipeline.dll</HintPath>
+    </Reference>
+
+- with -
+
+    <Reference Include="XNAnimationPipeline, Version=0.7.0.0, Culture=neutral, PublicKeyToken=4bea05dc7a5b1e4f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Ox Game Engine\References\Windows\x86\XNAnimationPipeline.dll</HintPath>
+    </Reference>
+
+*******************************************************************************
+* Adding deferred shading to Ox (will not happen until much later, if at all) *
+*******************************************************************************
+
+Order-dependant objects don't work with deferred drawing (AKA, deferred rendering), so they must
+be forward-drawn. Forward-drawn objects will have only limited capabilities. They will not -
+* receive shadows
+* have decals
+
+Target drawing process -
+1 - PreDraw objects.
+2 - Deferred draw optionally-batched order-independant objects (models, particles, billboards,
+etc).
+3 - Deferred draw lights, fog, shadows, etc.
+4 - Forward draw unbatched order-dependant objects back to front.
+5 - Draw post-process effects.
+6 - Draw gui.
+7 - Draw gui post-process effects.
+
+What must be done to achieve deferred shading -
+* Implement Ox content pipline so that all models, including animated ones,
+draw to a geometry buffer properly.
+* Implement lighting forward drawing for items that can be transparent.
+* Implement geometry buffer.
+* Implement deferred shading for lights, fog, shadows using the geometry buffer.
+* And more...

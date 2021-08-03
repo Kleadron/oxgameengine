@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SceneDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken xsi:type="SceneComponentToken">
+      <ParentGuid xsi:nil="true" />
+      <Guid>62bcd4c3-19fc-4edb-a00b-fbefd2fb78f2</Guid>
+      <Name>SceneComponent:62bcd4c3-19fc-4edb-a00b-fbefd2fb78f2</Name>
+      <Position>
+        <X>-12</X>
+        <Y>2</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>21.8</X>
+        <Y>21.8</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+    </ComponentToken>
+    <ComponentToken xsi:type="SceneComponentToken">
+      <ParentGuid xsi:nil="true" />
+      <Guid>e632f937-bf01-41c4-82d3-d11626469f56</Guid>
+      <Name>SceneComponent:e632f937-bf01-41c4-82d3-d11626469f56</Name>
+      <Position>
+        <X>2</X>
+        <Y>-14</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>21</X>
+        <Y>23</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+    </ComponentToken>
+    <ComponentToken xsi:type="SceneComponentToken">
+      <ParentGuid xsi:nil="true" />
+      <Guid>c8f735be-ff5f-472c-a8e9-f40e7537b54a</Guid>
+      <Name>SceneComponent:c8f735be-ff5f-472c-a8e9-f40e7537b54a</Name>
+      <Position>
+        <X>2</X>
+        <Y>17</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>21</X>
+        <Y>23</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+    </ComponentToken>
+    <ComponentToken xsi:type="SceneComponentToken">
+      <ParentGuid xsi:nil="true" />
+      <Guid>ff41adf7-a1d2-4ea2-b0b5-ce1f1f669594</Guid>
+      <Name>SceneComponent:ff41adf7-a1d2-4ea2-b0b5-ce1f1f669594</Name>
+      <Position>
+        <X>17</X>
+        <Y>1</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>21</X>
+        <Y>23</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+    </ComponentToken>
+  </Components>
+  <Groups />
+  <CameraPosition>
+    <X>-63.798172</X>
+    <Y>63.7940025</Y>
+    <Z>44.1720276</Z>
+  </CameraPosition>
+  <CameraOrientation>
+    <X>-38.7064629</X>
+    <Y>-47.87377</Y>
+    <Z>0</Z>
+  </CameraOrientation>
+  <PositionSnap>1</PositionSnap>
+  <ScaleSnap>0.125</ScaleSnap>
+  <OrientationSnap>15</OrientationSnap>
+  <CreationDepth>100</CreationDepth>
+</SceneDocumentToken>

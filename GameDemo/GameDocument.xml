@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>832675a2-da37-4a43-9d45-0b4c373e3a2b</Guid>
+      <Name>ExampleGame</Name>
+      <ScriptData />
+      <ScriptClass>Ox.Scripts.ExampleGame</ScriptClass>
+    </ComponentToken>
+  </Components>
+  <Groups />
+</GeneralDocumentToken>

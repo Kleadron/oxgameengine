@@ -1,0 +1,9 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Release" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="bin\x86\Debug\Ox.Engine.Test.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="bin\x86\Release\Ox.Engine.Test.dll" />
+  </Config>
+</NUnitProject>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SceneDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken xsi:type="AmbientLightToken">
+      <ParentGuid xsi:nil="true" />
+      <Guid>53af5d0b-1022-40d0-9937-25c1e79c053c</Guid>
+      <Name>AmbientLight:53af5d0b-1022-40d0-9937-25c1e79c053c</Name>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+      <Color>
+        <R>128</R>
+        <G>128</G>
+        <B>128</B>
+        <A>255</A>
+        <PackedValue>4286611584</PackedValue>
+      </Color>
+    </ComponentToken>
+    <ComponentToken xsi:type="ParticleEmitterToken">
+      <ParentGuid xsi:nil="true" />
+      <Guid>5d27568e-c97e-4b81-ab98-c6fe07053d91</Guid>
+      <Name>ParticleEmitter:5d27568e-c97e-4b81-ab98-c6fe07053d91</Name>
+      <ScriptClass>Ox.Scripts.ExampleParticles</ScriptClass>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Position>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </Scale>
+      <Orientation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Orientation>
+      <OrientationPlayTime xsi:nil="true" />
+      <Box>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Center>
+        <Extent>
+          <X>0.5</X>
+          <Y>0.5</Y>
+          <Z>0.5</Z>
+        </Extent>
+      </Box>
+      <DiffuseColor>
+        <R>255</R>
+        <G>255</G>
+        <B>255</B>
+        <A>255</A>
+        <PackedValue>4294967295</PackedValue>
+      </DiffuseColor>
+      <SpecularColor>
+        <R>128</R>
+        <G>128</G>
+        <B>128</B>
+        <A>255</A>
+        <PackedValue>4286611584</PackedValue>
+      </SpecularColor>
+      <EffectFileName>Ox/Effects/oxPointSprite</EffectFileName>
+      <NormalTechnique>Normal</NormalTechnique>
+      <DirectionalShadowTechnique>DirectionalShadow</DirectionalShadowTechnique>
+    </ComponentToken>
+  </Components>
+  <Groups />
+  <CameraPosition>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>100</Z>
+  </CameraPosition>
+  <CameraOrientation>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>0</Z>
+  </CameraOrientation>
+  <PositionSnap>1</PositionSnap>
+  <ScaleSnap>0.125</ScaleSnap>
+  <OrientationSnap>15</OrientationSnap>
+  <CreationDepth>100</CreationDepth>
+</SceneDocumentToken>

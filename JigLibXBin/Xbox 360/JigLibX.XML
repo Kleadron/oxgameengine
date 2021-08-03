@@ -1,0 +1,2190 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JigLibX</name>
+    </assembly>
+    <members>
+        <member name="T:JigLibX.Physics.Body">
+            <summary>
+            Basic rigid body - can be used as is, or a derived class can
+            over-ride certain behaviours.
+            A body can only be added to one physics system at a time!
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.PostPhysics(System.Single)">
+            <summary>
+            Called right at the end of the timestep to notify the
+            derived classes.
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.PrePhysics(System.Single)">
+            <summary>
+            Called right at the beginning of the timestep to notify the
+            derived classes.
+            </summary>
+            <param name="dt">The delta time.</param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.EnableBody">
+            <summary>
+            Register with the physics system.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.DisableBody">
+            <summary>
+            Deregiser from the physics system.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.MoveTo(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Matrix)">
+            This sets the position (sets the vel to 0), but it also tries
+            to make sure that any frozen bodies resting against this one
+            get activated if necessary.  Not very efficient. Be a little
+            careful about when you call it - it will mess with the physics
+            collision list.  Also, after this call the object will be
+            active.
+        </member>
+        <member name="M:JigLibX.Physics.Body.UpdateVelocity(System.Single)">
+            <summary>
+            Implementation updates the velocity/angular rotation with the
+            force/torque.
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.UpdatePosition(System.Single)">
+            <summary>
+            implementation updates the position/orientation with the
+            current velocties. 
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.UpdatePositionWithAux(System.Single)">
+            <summary>
+            Updates the position with the auxilary velocities, and zeros them.
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.InternalSetImmovable">
+            <summary>
+            Used by physics to temporarily make an object immovable -
+            needs to restore afterwards!
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.InternalRestoreImmovable">
+            <summary>
+            Used by physics to temporarily make an object immovable -
+            needs to restore afterwars!
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.SetActive">
+            <summary>
+            Make the body active.
+            </summary>
+            <param name="actitityFactor"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.GetShouldBeActive">
+            <summary>
+            Indicates if the velocity is above the threshold for freezing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Physics.Body.DampForDeactivation">
+            <summary>
+            Damp movement as the body approaches deactivation
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.SetDeactivationTime(System.Single)">
+            <summary>
+            Set how long it takes to deactivate.
+            </summary>
+            <param name="seconds"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.SetActivityThreshold(System.Single,System.Single)">
+            <summary>
+            Set what the velocity threshold is for activation.
+            rot is in deg per second.
+            </summary>
+            <param name="vel"></param>
+            <param name="angVel"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.GetVelocity(Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Returns the velocity of a point at body-relative position
+            (in world frame) relPos
+            </summary>
+            <param name="relPos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Physics.Body.GetVelocity(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Returns the velocity of a point at body-relative position
+            (in world frame) relPos
+            </summary>
+            <param name="relPos"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.GetVelocityAux(Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            As GetVelocity but just uses the aux velocities
+            </summary>
+            <param name="relPos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Physics.Body.GetVelocityAux(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            As GetVelocity but just uses the aux velocities
+            </summary>
+            <param name="relPos"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.AddMovementActivation(Microsoft.Xna.Framework.Vector3,JigLibX.Physics.Body)">
+            <summary>
+            adds the other body to the list of bodies to be activated if
+            this body moves more than a certain distance from either a
+            previously stored position, or the position passed in.
+            </summary>
+            <param name="pos"></param>
+            <param name="otherBody"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.ClearForces">
+            <summary>
+            This just sets all forces/impulses etc to zero
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.AddGravityToExternalForce">
+            <summary>
+            Adds the force of global gravity to the external force, if the body is marked
+            to be effected via global gravity
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.AddExternalForces(System.Single)">
+            <summary>
+            allow the body to add on any additional forces (including
+            gravity)/impulses etc. Default behaviour sets to gravity.
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Body.CopyCurrentStateToOld">
+            <summary>
+            copies the current position etc to old - normally called only
+            by tPhysicsSystem.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.StoreState">
+            <summary>
+            Copy our current state (position, velocity etc) into the stored state
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Body.RestoreState">
+            <summary>
+            Restore from the stored state into our current state.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.Body.IsBodyEnabled">
+            <summary>
+            Are we registered with the physics system?
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.Body.CollisionSkin">
+            <summary>
+            Allowed to return null if this body doesn't engage
+            in collisions.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.Body.Immovable">
+            <summary>
+            Ensures that this object never moves, and reduces collision
+            checking.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.Body.AllowFreezing">
+            <summary>
+            Allows setting of whether this body ever freezes
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.Body.DoShockProcessing">
+            <summary>
+            Bodies that use a lot of constraints don't behave very well during the
+            physics shock step, so they can bypass it.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Capsule">
+            <summary>
+            defines a capsule that is orientated along its body x direction, with
+            its start at its position.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Primitive">
+             All geometry primitives should derive from this so that it's possible to 
+             cast them into the correct type without the overhead/hassle of RTTI or 
+             virtual fns specific to just one class of primitive. Just do a static cast
+             based on the type, or use the Get functions
+            
+             However, destruction requires virtual functions really, as does supporting other
+             user-defined primitives
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.Clone">
+            <summary>
+            Returns a copy
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.SegmentIntersect(System.Single@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Segment)">
+            <summary>
+            Must support intersection with a segment (ray cast)
+            </summary>
+            <param name="frac"></param>
+            <param name="normal"></param>
+            <param name="seg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.GetVolume">
+            <summary>
+            Calculate and return the volume
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.GetSurfaceArea">
+            <summary>
+            Calculate and return the surface area
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.GetMassProperties(JigLibX.Geometry.PrimitiveProperties,System.Single@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Matrix@)">
+            <summary>
+            Returns the mass, center of mass, and intertia tensor around the origin
+            </summary>
+            <param name="primitiveProperties"></param>
+            <param name="mass"></param>
+            <param name="centerOfMass"></param>
+            <param name="inertiaTensor"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.GetBoundingBox(JigLibX.Geometry.AABox@)">
+            <summary>
+            Returns a bounding box that covers this primitive. Default returns a huge box, so
+            implement this in the derived class for efficiency
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Primitive.GetBoundingBox">
+            <summary>
+            Returns a bounding box that covers this primitive. Default returns a huge box, so
+            implement this in the derived class for efficiency
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JigLibX.Geometry.IndexedTriangle">
+            <summary>
+            Support for an indexed triangle - assumes ownership by something that 
+            has an array of vertices and an array of tIndexedTriangle
+            </summary>
+        </member>
+        <member name="F:JigLibX.Geometry.IndexedTriangle.vertexIndices0">
+            indices into our owner's array of vertices 
+        </member>
+        <member name="M:JigLibX.Geometry.IndexedTriangle.SetVertexIndices(System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{Microsoft.Xna.Framework.Vector3})">
+            <summary>
+            Set the indices into the relevant vertex array for this
+            triangle. Also sets the plane and bounding box
+            </summary>
+            <param name="i0"></param>
+            <param name="i1"></param>
+            <param name="i2"></param>
+            <param name="vertexArray"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.IndexedTriangle.SetVertexIndices(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Vector3[])">
+            <summary>
+            Set the indices into the relevant vertex array for this
+            triangle. Also sets the plane and bounding box
+            </summary>
+            <param name="i0"></param>
+            <param name="i1"></param>
+            <param name="i2"></param>
+            <param name="vertexArray"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.IndexedTriangle.GetVertexIndices(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Get the indices into the relevant vertex array for this triangle.
+            </summary>
+            <param name="i0"></param>
+            <param name="i1"></param>
+            <param name="i2"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.IndexedTriangle.GetVertexIndex(System.Int32)">
+            Get the vertex index association with iCorner (which should be
+            0, 1 or 2)
+        </member>
+        <member name="M:JigLibX.Geometry.IndexedTriangle.IsEdgeConvex(System.Int32)">
+            Has the edge been marked as convex. Same convention for edge
+            numbering as in tTriangle.
+        </member>
+        <member name="M:JigLibX.Geometry.IndexedTriangle.IsPointConvex(System.Int32)">
+            Has the point been marked as convex. Same convention for point
+            numbering as in tTriangle
+        </member>
+        <member name="P:JigLibX.Geometry.IndexedTriangle.Plane">
+            Get the triangle plane
+        </member>
+        <member name="T:JigLibX.Geometry.TriangleVertexIndices">
+            <summary>
+            structure used to set up the mesh
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.Overlap.SegmentTriangleOverlap(JigLibX.Geometry.Segment,JigLibX.Geometry.Triangle)">
+            <summary>
+            Indicates if a segment intersects a triangle
+            </summary>
+            <param name="seg"></param>
+            <param name="triangle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Overlap.SegmentAABoxOverlap(JigLibX.Geometry.Segment,JigLibX.Geometry.AABox)">
+            <summary>
+            Indicates if a segment overlaps an AABox
+            </summary>
+            <param name="seg"></param>
+            <param name="AABox"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Physics.Constraint.EnableConstraint">
+            <summary>
+            Register with the physics system.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Constraint.DisableConstraint">
+            <summary>
+            deregister from the physics system
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Constraint.PreApply(System.Single)">
+            <summary>
+            prepare for applying constraints - the subsequent calls to
+            apply will all occur with a constant position i.e. precalculate
+            everything possible
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Constraint.Apply(System.Single)">
+            <summary>
+            apply the constraint by adding impulses. Return value
+            indicates if any impulses were applied. If impulses were applied
+            the derived class should call SetConstraintsUnsatisfied() on each
+            body that is involved.
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Physics.Constraint.Destroy">
+            <summary>
+            implementation should remove all references to bodies etc - they've 
+            been destroyed.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Constraint.SmoothCD(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@,System.Single,Microsoft.Xna.Framework.Vector3,System.Single)">
+            <summary>
+            SmoothCD for ease-in / ease-out smoothing 
+            Based on Game Programming Gems 4 Chapter 1.10
+            </summary>
+            <param name="val">in/out: value to be smoothed</param>
+            <param name="valRate">in/out: rate of change of the value</param>
+            <param name="timeDelta">in: time interval</param>
+            <param name="to">in: the target value</param>
+            <param name="smoothTime">in: timescale for smoothing</param>
+        </member>
+        <member name="P:JigLibX.Physics.Constraint.IsConstraintEnabled">
+            <summary>
+            Are we registered with the physics system?
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.Constraint.Satisfied">
+            <summary>
+            Derived class should call this when Apply has been called on 
+            this constraint.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Math.Transform">
+            <summary>
+            Transform is unneeded and should be removed soon. The XNA matrix4x4 can store
+            the orientation and position.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Line">
+            <summary>
+            A line goes through pos, and extends infinitely far in both
+            directions along dir.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Ray">
+            <summary>
+            A Ray is just a line that extends in the +ve direction
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Segment">
+            <summary>
+            A Segment is a line that starts at origin and goes only as far as
+            (origin + delta).
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectSphereStaticMesh">
+            <summary>
+            DetectFunctor for SphereStaticMesh collison detection.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.DetectFunctor">
+            <summary>
+            Used during setup - allow the creator to register functors to do
+            the actual collision detection. Each functor inherits from this
+            - has a name to help debugging!  The functor has to be able to
+            handle the primitivs being passed to it in either order.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.DetectFunctor.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="primType0"></param>
+            <param name="primType1"></param>
+        </member>
+        <member name="M:JigLibX.Collision.DetectFunctor.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereStaticMesh.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereStaticMesh.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectSphereSphere">
+            <summary>
+            DetectFunctor for SphereSphere collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereSphere.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereSphere.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSystemBrute">
+            <summary>
+            CollisionSystem which checks every skin against each other. For small scenes this is
+            as fast or even faster as CollisionSystemGrid.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSystem">
+            <summary>
+            Interface to a class that will contain a list of all the
+            collision objects in the world, and it will provide ways of
+            detecting collisions between other objects and these collision
+            objects.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.#ctor">
+            <summary>
+            Constructor initialized the default CollisionFunctors. Other CollisionFunctors can be added with 
+            RegisterCollDetectFunctor.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.AddCollisionSkin(JigLibX.Collision.CollisionSkin)">
+            <summary>
+            Don't add skins whilst doing detection!
+            </summary>
+            <param name="collisionSkin"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.RemoveCollisionSkin(JigLibX.Collision.CollisionSkin)">
+            <summary>
+            Don't remove skins whilst doing detection!
+            </summary>
+            <param name="collisionSkin"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.CollisionSkinMoved(JigLibX.Collision.CollisionSkin)">
+            <summary>
+            Whenever a skin changes position it will call this to let us
+            update our internal state.
+            </summary>
+            <param name="skin"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.DetectCollisions(JigLibX.Physics.Body,JigLibX.Collision.CollisionFunctor,JigLibX.Collision.CollisionSkinPredicate2,System.Single)">
+            <summary>
+            Detects all collisions between the body and all the registered
+            collision skins (which should have already had their
+            positions/bounding volumes etc updated).  For each potential
+            pair of skins then the predicate (if it exists) will be called
+            to see whether or not to continue. If the skins are closer
+            than collTolerance (+ve value means report objects that aren't
+            quite colliding) then the functor will get called.
+            You can't just loop over all your bodies calling this, because 
+            that will double-detect collisions. Use DetectAllCollisions for 
+            that.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.DetectAllCollisions(System.Collections.Generic.List{JigLibX.Physics.Body},JigLibX.Collision.CollisionFunctor,JigLibX.Collision.CollisionSkinPredicate2,System.Single)">
+            <summary>
+            As DetectCollisions but detects for all bodies, testing each pair 
+            only once
+            </summary>
+            <param name="bodies"></param>
+            <param name="collisionFunctor"></param>
+            <param name="collisionPredicate"></param>
+            <param name="collTolerance"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.RegisterCollDetectFunctor(JigLibX.Collision.DetectFunctor)">
+            <summary>
+            type0/1 could be from tCollisionSkinType or they could be
+            larger values. The collision detection table will get extended
+            as necessary. You only need to register the function once
+            (i.e. not for type0, type1 then type1, type 0).
+            </summary>
+            <param name="f"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.GetCollDetectFunctor(System.Int32,System.Int32)">
+            <summary>
+            Get the previously registered function for the pair type. May
+            return 0.
+            </summary>
+            <param name="type0"></param>
+            <param name="type1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystem.SegmentIntersect(System.Single@,JigLibX.Collision.CollisionSkin@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Segment,JigLibX.Collision.CollisionSkinPredicate1)">
+            <summary>
+            Intersect a segment with the world. If non-zero the predicate
+            allows certain skins to be excluded
+            </summary>
+            <param name="seg"></param>
+            <param name="collisionPredicate"></param>
+            <returns></returns>
+        </member>
+        <member name="P:JigLibX.Collision.CollisionSystem.UseSweepTests">
+            <summary>
+            Sets whether collision tests should use sweep or overlap
+            </summary>
+        </member>
+        <member name="P:JigLibX.Collision.CollisionSystem.MaterialTable">
+            <summary>
+            Get the current MaterialTable of the CollisionSystem.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystemBrute.#ctor">
+            <summary>
+            Initializes a new CollisionSystem which checks for collision
+            by checking each skin against each other.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectBoxStaticMesh">
+            <summary>
+            DetectFunctor for BoxStaticMesh collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxStaticMesh.#ctor">
+            <summary>
+            Constructor of BoxStaticMesh Collision DetectFunctor.
+            <seealso cref="T:JigLibX.Collision.DetectFunctor"/>
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxStaticMesh.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            Detect BoxStaticMesh Collisions.
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxStaticMesh.AddPoint(System.Collections.Generic.List{Microsoft.Xna.Framework.Vector3},Microsoft.Xna.Framework.Vector3@,System.Single)">
+             <summary>
+             AddPoint
+             if pt is less than Sqrt(combinationDistanceSq) from one of the
+             others the original is replaced with the mean of it
+             and pt, and false is returned. true means that pt was
+             added to pts
+             </summary>
+             <param name="pts"></param>
+             <param name="pt"></param>
+             <param name="combinationDistanceSq"></param>
+             <returns></returns>
+            
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxStaticMesh.GetBoxTriangleIntersectionPoints(System.Collections.Generic.List{Microsoft.Xna.Framework.Vector3},JigLibX.Geometry.Box,JigLibX.Geometry.Triangle,System.Single)">
+            <summary>
+            GetBoxTriangleIntersectionPoints
+            Pushes intersection points onto the back of pts. Returns the
+            number of points found.
+            Points that are close together (compared to 
+            combinationDistance) get combined
+            </summary>
+            <param name="pts"></param>
+            <param name="box"></param>
+            <param name="triangle"></param>
+            <param name="combinationDistance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxStaticMesh.Disjoint(System.Single@,Microsoft.Xna.Framework.Vector3,JigLibX.Geometry.Box,JigLibX.Geometry.Triangle,System.Single)">
+            <summary>
+            Disjoint Returns true if disjoint.  Returns false if intersecting,
+            and sets the overlap depth, d scaled by the axis length
+            </summary>
+            <param name="d"></param>
+            <param name="axis"></param>
+            <param name="box"></param>
+            <param name="triangle"></param>
+            <param name="collTolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxStaticMesh.Disjoint(System.Single@,Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Box,JigLibX.Geometry.Triangle@,System.Single)">
+            <summary>
+            Disjoint Returns true if disjoint.  Returns false if intersecting,
+            and sets the overlap depth, d scaled by the axis length
+            </summary>
+            <param name="d"></param>
+            <param name="axis"></param>
+            <param name="box"></param>
+            <param name="triangle"></param>
+            <param name="collTolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionFunctor">
+            <summary>
+            The user of CollisionSystem creates an object derived from
+            CollisionFunctor and passes it in to
+            DetectCollisions. For every collision detected
+            the functor gets called so that the user can decide if they want
+            to keep the collision.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionFunctor.CollisionNotify(JigLibX.Collision.CollDetectInfo@,Microsoft.Xna.Framework.Vector3@,JigLibX.Collision.SmallCollPointInfo*,System.Int32)">
+            <summary>
+            Skins are passed back because there maybe more than one skin
+            per body, and the user can always get the body from the skin.
+            </summary>
+            <param name="collDetectInfo"></param>
+            <param name="dirToBody0"></param>
+            <param name="pointInfos"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSkinPredicate2">
+            The user can create an object derived from this and pass it in
+            to CollisionSystem.DetectCollisions to indicate whether a pair
+            of skins should be considered. 
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkinPredicate2.ConsiderSkinPair(JigLibX.Collision.CollisionSkin,JigLibX.Collision.CollisionSkin)">
+            <summary>
+            Decides whether a pair of skins should be considered for collision
+            or not.
+            </summary>
+            <param name="skin0"></param>
+            <param name="skin1"></param>
+            <returns>True if the pair should be considered otherwise false.</returns>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSkinPredicate1">
+            <summary>
+            The user can create an object derived from this and pass it in
+            to the ray/segment intersection functions to indicate whether certain
+            skins should be considered. 
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkinPredicate1.ConsiderSkin(JigLibX.Collision.CollisionSkin)">
+            <summary>
+            Decides whether a CollisionSkin should be considered while
+            doing SegmentIntersecting tests or not.
+            </summary>
+            <param name="skin0">Skin to be considered.</param>
+            <returns>True if the skin should be considered otherwise false.</returns>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionCallbackFn">
+            <summary>
+            a skin can ask to get a callback when a collision is detected this will be called
+            if it return false, the contact points will not be generated
+            </summary>
+            <param name="skin0">the skin that had the callback on</param>
+            <param name="skin1">the other skin that we have collided with (maybe null tho would be odd...)</param>
+            <returns>false to inhibit contact point generation</returns>
+        </member>
+        <member name="T:JigLibX.Vehicles.Chassis">
+            <summary>
+            basic rigid body to represent a single chassis - at the moment 
+            no moving components. You can inherit from this and pass your 
+            own version to Car (TODO - tidy up this)
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.Chassis.SetDims(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Set the dimensions of the chassis, specified by the extreme corner points.
+            This will also call Car.SetupDefaultWheels();
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+        </member>
+        <member name="M:JigLibX.Vehicles.Chassis.GetDims(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Set the dimensions of the chassis, specified by the extreme corner points.
+            This will also call Car.SetupDefaultWheels();
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+        </member>
+        <member name="M:JigLibX.Vehicles.Chassis.EnableChassis">
+            <summary>
+            Register with physics
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.Chassis.DisableChassis">
+            <summary>
+            remove from the physics system
+            </summary>
+        </member>
+        <member name="T:JigLibX.Vehicles.ChassisBody">
+            <summary>
+            extend tBody to allow for adding on car-specific forces (e.g.
+            wheel/drive forces) - i.e. when we get asked to add on forces
+            give the car the opportunity to do stuff
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.ChassisBody.AddExternalForces(System.Single)">
+            inherited from tBody
+        </member>
+        <member name="T:JigLibX.Physics.Joint">
+            <summary>
+            virtual base class for all joints
+            All joints are expected to do the following in their constructor:
+            1. create whatever constraints are necessary
+            2. register these constraints with the physics engine    
+            </summary>
+        </member>
+        <member name="T:JigLibX.Physics.Controller">
+            <summary>
+            This can get updated at the same time as Body.AddExternalForces so that forces
+            can be added independant of individual bodies - e.g. joints between pairs of bodies.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Controller.EnableController">
+            <summary>
+            Register with the physics system.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Controller.DisableController">
+            <summary>
+            Deregister from the physics system.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.Controller.UpdateController(System.Single)">
+            <summary>
+            implement this to apply whatever forces are needed to the
+            objects this controls
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="P:JigLibX.Physics.Controller.IsControllerEnabled">
+            <summary>
+            Are we registered with the physics system?
+            </summary>
+        </member>
+        <member name="T:JigLibX.Physics.ConstraintVelocity">
+            <summary>
+            constraints a velocity to be a certain value - either in world 
+            or body (by transforming the velocity direction) coordinates
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.ConstraintVelocity.PreApply(System.Single)">
+            apply impulses to satisfy the constraint.
+        </member>
+        <member name="T:JigLibX.Geometry.PrimitiveType">
+            <summary>
+            The JigLibX default Primitives.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectCapsuleBox">
+            <summary>
+            DetectFunctor for CapsuleBox collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsuleBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsuleBox.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="infoOrig"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectBoxHeightmap">
+            <summary>
+            DetectFunctor for BoxHeightmap collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxHeightmap.#ctor">
+            <summary>
+            Constructor of BoxHeightmap Collision DetectFunctor.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxHeightmap.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            Detect BoxHeightmap Collisions.
+            </summary>
+            <param name="infoOrig"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Utils.Array2D">
+            <summary>
+            Defines a 2D Array
+            </summary>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.CreateArray(System.Int32,System.Int32,JigLibX.Utils.Array2D.Function)">
+            <summary>
+            Creates 2D array from mathematical function
+            </summary>
+            <param name="nx"></param>
+            <param name="ny"></param>
+            <param name="yScale"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.Resize(System.Int32,System.Int32)">
+            <summary>
+            allows resizing. Data will be lost if resizing occurred
+            </summary>
+            <param name="nx"></param>
+            <param name="ny"></param>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.Pow(System.Single)">
+            <summary>
+            raise array elements to a power
+            </summary>
+            <param name="rhs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.Abs">
+            <summary>
+            sets each value to its absolute value by comparison with float(0)
+            </summary>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.GaussianFilter(System.Single,System.Int32)">
+            <summary>
+            Apply a Gaussian filter with length scale r, extending over a
+            square of half-width n (so n=1 uses a square of 9 points, n = 2
+            uses 25 etc). Suggest using n at least 2*r.
+            </summary>
+            <param name="r">length scale</param>
+            <param name="n">half-width</param>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.Shift(System.Int32,System.Int32)">
+            <summary>
+            shifts all the elements...
+            </summary>
+            <param name="offsetX"></param>
+            <param name="offsetY"></param>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.SetRange(System.Single,System.Single)">
+            <summary>
+            scale to fit within range...
+            </summary>
+            <param name="valMin"></param>
+            <param name="valMax"></param>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.SetTo(System.Single)">
+            <summary>
+            Set to a constant value
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.Interpolate(System.Single,System.Single)">
+            <summary>
+            interpolate
+            </summary>
+            <param name="fi"></param>
+            <param name="fj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.GetAt(System.Int32,System.Int32)">
+            <summary>
+            checked access - unwraps if wrapping set
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Utils.Array2D.SetAt(System.Int32,System.Int32,System.Single)">
+            <summary>
+            checked access - unwraps if wrapping set
+            </summary>
+        </member>
+        <member name="P:JigLibX.Utils.Array2D.Item(System.Int32,System.Int32)">
+            <summary>
+            ! Unchecked access - no wrapping
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="P:JigLibX.Utils.Array2D.Wrap">
+            <summary>
+            enables/disables wrapping
+            </summary>
+        </member>
+        <member name="P:JigLibX.Utils.Array2D.Nx">
+            <summary>
+            Gets the 'x' size of the array
+            </summary>
+        </member>
+        <member name="P:JigLibX.Utils.Array2D.Nz">
+            <summary>
+            Gets the 'y' size of the array
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsulePlane.#ctor">
+            <summary>
+            DetectFunctor for CapsulePlane collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsulePlane.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Physics.HingeJoint">
+            <summary>
+            Implements a simple hinge between two rigid bodies. The bodies
+            should be in a suitable configuration when this joint is created.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.HingeJoint.#ctor">
+            <summary>
+            default constructor so you can initialise this joint later
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.HingeJoint.EnableHinge">
+            <summary>
+            Register the constraints
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.HingeJoint.DisableHinge">
+            <summary>
+            deregister the constraints
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.HingeJoint.Break">
+            <summary>
+            Just remove the limit constraint
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.HingeJoint.Mend">
+            <summary>
+            Just enable the limit constraint
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.HingeJoint.IsBroken">
+            <summary>
+            Are we broken
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.AABox">
+            <summary>
+            An axis aligned Box.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.AABox.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Position based on one corner. sideLengths are the full side
+            lengths (each element must be >= 0)
+            </summary>
+            <param name="minPos"></param>
+            <param name="maxPos"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.AABox.AddPoint(Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Adds a point to the AABB.
+            </summary>
+            <remarks>
+            This function is heavily used to calculate the axis
+            aligned bounding boxes arround any object. Calling 
+            by reference is unusal but makes it faster.
+            </remarks> 
+            <param name="pos"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsuleHeightmap.#ctor">
+            <summary>
+            DetectFunctor for CapsuleHeightmap collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsuleHeightmap.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="infoOrig"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="M:JigLibX.Math.JiggleMath.RotationMatrix(System.Single,Microsoft.Xna.Framework.Vector3)">
+            Assumes dir is normalised. angle is in deg
+        </member>
+        <member name="T:JigLibX.Physics.BasicCollisionFunctor">
+            <summary>
+            Derived from the CollisionFunctor class. The BasicCollisionFunctor can be passed to
+            CollisionSystem.DetectAllCollision method and gets called for every collision found. 
+            The collisions get added to a list.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.BasicCollisionFunctor.#ctor(System.Collections.Generic.List{JigLibX.Collision.CollisionInfo})">
+            <summary>
+            Constructor of BasicCollisionFunctor.
+            </summary>
+            <param name="colls">This list gets filled with collisionInfo entries.</param>
+        </member>
+        <member name="M:JigLibX.Physics.BasicCollisionFunctor.CollisionNotify(JigLibX.Collision.CollDetectInfo@,Microsoft.Xna.Framework.Vector3@,JigLibX.Collision.SmallCollPointInfo*,System.Int32)">
+            <summary>
+            CollisionNotify gets called by the CollisionSystem each time a
+            Collision is detected.
+            </summary>
+            <param name="collDetectInfo"></param>
+            <param name="dirToBody0"></param>
+            <param name="pointInfos"></param>
+        </member>
+        <member name="T:JigLibX.Physics.FrozenCollisionPredicate">
+            <summary>
+            Derived from CollisionSkinPredicate2. A SkinPredicate2 which can be passed
+            to CollisionSystem.DetectCollisions. Only active skin owners get considered.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.FrozenCollisionPredicate.#ctor(JigLibX.Physics.Body)">
+            <summary>
+            Constructor of FrozenCollision Predicate.
+            </summary>
+            <param name="body">The body itself doesn't get checked.</param>
+        </member>
+        <member name="M:JigLibX.Physics.FrozenCollisionPredicate.ConsiderSkinPair(JigLibX.Collision.CollisionSkin,JigLibX.Collision.CollisionSkin)">
+            <summary>
+            Considers two skins and returns true if their bodies aren't frozen.
+            </summary>
+            <param name="skin0">The first skin of the pair of skins which should be checked.</param>
+            <param name="skin1">The second skin of the pair of skins which should be checked.</param>
+            <returns>Returns true if the skinPair owners are active otherwise false.</returns>
+        </member>
+        <member name="T:JigLibX.Physics.ConstraintPoint">
+            <summary>
+            Constraints a point on one body to be fixed to a point on another body
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:JigLibX.Physics.ConstraintPoint.R0" -->
+        <!-- Badly formed XML comment ignored for member "F:JigLibX.Physics.ConstraintPoint.R1" -->
+        <!-- Badly formed XML comment ignored for member "M:JigLibX.Physics.ConstraintPoint.#ctor" -->
+        <member name="T:JigLibX.JigLibXException">
+            <summary>
+            Thrown when an error occurs in JigLibX Physic Library.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Position/orientation are based on one corner the box. Sides are
+            the full side lengths
+            </summary>
+            <param name="pos"></param>
+            <param name="orient"></param>
+            <param name="sideLengths"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetCentre">
+            <summary>
+            Get the box centre position
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetBoundingRadiusAroundCentre">
+            <summary>
+            Get bounding radius around the centre
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.Expand(Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Expands box by amount on each side (in both +ve and -ve directions)
+            </summary>
+            <param name="amount"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetHalfSideLengths">
+            <summary>
+            Returns the half-side lengths.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetSide(System.Int32)">
+            <summary>
+            Returns the vector representing the edge direction 
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetSqDistanceToPoint(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Returns the squared distance 
+            todo remove this/put it in distance fns
+            </summary>
+            <param name="closestBoxPoint"></param>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetDistanceToPoint(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Returns the distance from the point to the box, (-ve if the
+            point is inside the box), and optionally the closest point on
+            the box.
+            TODO make this actually return -ve if inside
+            todo remove this/put it in distance fns
+            </summary>
+            <param name="closestBoxPoint"></param>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetSpan(System.Single@,System.Single@,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Gets the minimum and maximum extents of the box along the
+            axis, relative to the centre of the box.
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <param name="axis"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetSpan(System.Single@,System.Single@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Gets the minimum and maximum extents of the box along the
+            axis, relative to the centre of the box.
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <param name="axis"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetCornerPoints(Microsoft.Xna.Framework.Vector3[]@)">
+            <summary>
+            Gets the corner points, populating pts
+            </summary>
+            <param name="pts"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetEdges(JigLibX.Geometry.Box.Edge[]@)">
+            <summary>
+            Returns a (const) list of 12 edges - at the moment in this order:
+            {BRD, BRU}, // origin-up
+            {BRD, BLD}, // origin-left
+            {BRD, FRD}, // origin-fwd
+            {BLD, BLU}, // leftorigin-up
+            {BLD, FLD}, // leftorigin-fwd
+            {FRD, FRU}, // fwdorigin-up
+            {FRD, FLD}, // fwdorigin-left
+            {BRU, BLU}, // uporigin-left
+            {BRU, FRU}, // uporigin-fwd
+            {BLU, FLU}, // upleftorigin-fwd
+            {FRU, FLU}, // upfwdorigin-left
+            {FLD, FLU}, // fwdleftorigin-up
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Box.GetEdgesAroundPoint(System.Int32[]@,JigLibX.Geometry.Box.BoxPointIndex)">
+            <summary>
+            EdgeIndices will contain indexes into the result of GetAllEdges
+            </summary>
+            <param name="edgeIndices"></param>
+            <param name="pt"></param>
+        </member>
+        <member name="P:JigLibX.Geometry.Box.Position">
+            <summary>
+            Get/set the box corner/origin position
+            </summary>
+        </member>
+        <member name="P:JigLibX.Geometry.Box.Orientation">
+            <summary>
+            Get/Set the box orientation
+            </summary>
+        </member>
+        <member name="P:JigLibX.Geometry.Box.SideLengths">
+            <summary>
+            Get the three side lengths of the box
+            </summary>
+            <param name="sideLengths"></param>
+            <returns></returns>
+        </member>
+        <member name="T:JigLibX.Geometry.Box.Edge">
+            <summary>
+            Edge just contains indexes into the points returned by GetCornerPoints.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Box.BoxPointIndex">
+            <summary>
+            Indices into the points returned by GetCornerPoints
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.Distance.SegmentSegmentDistanceSq(System.Single@,System.Single@,JigLibX.Geometry.Segment,JigLibX.Geometry.Segment)">
+            <summary>
+            Returns the distance of two segments.
+            </summary>
+            <param name="t0">Parametric representation of nearest point on seg0.</param>
+            <param name="t1">Parametric representation of nearest point on seg0.</param>
+            <param name="seg0">First segment to test.</param>
+            <param name="seg1">Second segment to test.</param>
+            <returns></returns>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectBoxBox">
+            <summary>
+            DetectFunctor for BoxBox Collisions.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxBox.#ctor">
+            <summary>
+            Constructor of BoxBox Collision DetectFunctor.
+            <seealso cref="T:JigLibX.Collision.DetectFunctor"/>
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxBox.Disjoint(System.Single@,Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Box,JigLibX.Geometry.Box,System.Single)">
+            <summary>
+            Disjoint Returns true if disjoint. Returns false if intersecting,
+            and sets the overlap depth, d scaled by the axis length.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxBox.AddPoint(System.Collections.Generic.List{JigLibX.Collision.CollDetectBoxBox.ContactPoint},Microsoft.Xna.Framework.Vector3@,System.Single)">
+            <summary>
+            AddPoint
+            if pt is less than Sqrt(combinationDistanceSq) from one of the
+            others the original is replaced with the mean of it
+            and pt, and false is returned. true means that pt was
+            added to pts
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxBox.GetAABox2EdgeIntersectionPoints(System.Collections.Generic.List{JigLibX.Collision.CollDetectBoxBox.ContactPoint},Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Box,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Vector3@,System.Single)">
+            <summary>
+            The AABox has a corner at the origin and size sides.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxBox.GetAABox2BoxEdgesIntersectionPoints(System.Collections.Generic.List{JigLibX.Collision.CollDetectBoxBox.ContactPoint},Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Box,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Vector3@,System.Single)">
+            <summary>
+            Pushes intersection points (in world space) onto the back of pts.
+            Intersection is between an AABox faces and an orientated box's
+            edges. orient and pos are used to transform the points from the
+            AABox frame back into the original frame.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxBox.GetBoxBoxIntersectionPoints(System.Collections.Generic.List{JigLibX.Collision.CollDetectBoxBox.ContactPoint},JigLibX.Geometry.Box,JigLibX.Geometry.Box,System.Single,System.Single)">
+            <summary>
+            Pushes intersection points onto the back of pts. Returns the
+            number of points found.
+            Points that are close together (compared to 
+            combinationDistance) get combined
+            dirToBody0 is the collision normal towards box0
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JigLibX.Collision.CollDetectBoxBox.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)" -->
+        <member name="T:JigLibX.Collision.GridEntry">
+            <summary>
+            Double linked list used to contain all the skins in a grid box
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.GridEntry.RemoveGridEntry(JigLibX.Collision.GridEntry)">
+            <summary>
+            Removes the entry by updating its neighbours. Also zaps the prev/next
+            pointers in the entry, to help debugging
+            </summary>
+            <param name="entry"></param>
+        </member>
+        <member name="M:JigLibX.Collision.GridEntry.InsertGridEntryAfter(JigLibX.Collision.GridEntry,JigLibX.Collision.GridEntry)">
+            <summary>
+            Inserts an entry after prev, updating all links
+            </summary>
+            <param name="entry"></param>
+            <param name="prev"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSystemGrid">
+            <summary>
+            implements a collision system by dividing the world up into a wrapping
+            grid with a certain configurable size. If objects are evenly distributed
+            this will reduce the number of checks that need to be made.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSystemGrid.#ctor(System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new CollisionSystem which uses a grid to speed up collision detection.
+            Use this system for larger scenes with many objects.
+            </summary>
+            <param name="nx">Number of GridEntries in X Direction.</param>
+            <param name="ny">Number of GridEntries in Y Direction.</param>
+            <param name="nz">Number of GridEntries in Z Direction.</param>
+            <param name="dx">Size of a single GridEntry in X Direction.</param>
+            <param name="dy">Size of a single GridEntry in Y Direction.</param>
+            <param name="dz">Size of a single GridEntry in Z Direction.</param>
+        </member>
+        <member name="M:JigLibX.Vehicles.Car.#ctor(System.Boolean,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Single,System.Single)">
+            On construction the physical/collision objects are created, but
+            not registered
+        </member>
+        <member name="M:JigLibX.Vehicles.Car.SetupDefaultWheels">
+            <summary>
+            sets up some sensible wheels based on the chassis
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.Car.EnableCar">
+            <summary>
+            Register with physics
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.Car.DisableCar">
+            <summary>
+            remove from the physics system
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.Car.PostPhysics(System.Single)">
+            <summary>
+            Update stuff at the end of physics
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.BWDrive">
+            <summary>
+            Sets back-wheel drive
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.FWDrive">
+            <summary>
+            Sets front-wheel drive
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.Chassis">
+            <summary>
+            There will always be a chassis
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.Wheels">
+            <summary>
+            Allow access to all the wheels
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.Accelerate">
+            <summary>
+            Accelerate control - values -1/0 to 1
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.Steer">
+            <summary>
+            Steer control - values -1/0 to 1
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Car.HBrake">
+            <summary>
+            HBrake control - values -1/0 to 1
+            </summary>
+        </member>
+        <member name="T:JigLibX.Physics.ConstraintMaxDistance">
+            <summary>
+            Constraints a point on one body to be fixed to a point on another body
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectSphereCapsule">
+            <summary>
+            DetectFunctor for SphereCapsule collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereCapsule.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereCapsule.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="infoOrig"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Physics.ConstraintWorldPoint">
+            <summary>
+            Constrains a point within a rigid body to remain at a fixed world point    
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.ConstraintWorldPoint.#ctor(JigLibX.Physics.Body,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="body"></param>
+            <param name="pointOnBody">pointOnBody is in body coords</param>
+            <param name="worldPosition"></param>
+        </member>
+        <member name="T:JigLibX.Geometry.Triangle">
+            <summary>
+            Defines a 3d triangle. Each edge goes from the origin.
+            Cross(edge0, edge1)  gives the triangle normal.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.Triangle.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Points specified so that pt1-pt0 is edge0 and p2-pt0 is edge1
+            </summary>
+            <param name="pt0"></param>
+            <param name="pt1"></param>
+            <param name="pt2"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Triangle.#ctor(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Points specified so that pt1-pt0 is edge0 and p2-pt0 is edge1
+            </summary>
+            <param name="pt0"></param>
+            <param name="pt1"></param>
+            <param name="pt2"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Triangle.GetPoint(System.Int32)">
+            <summary>
+            Same numbering as in the constructor
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Triangle.GetPoint(System.Int32,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Same numbering as in the constructor
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JigLibX.Geometry.Triangle.GetPoint(Microsoft.Xna.Framework.Vector3@,System.Int32)" -->
+        <member name="M:JigLibX.Geometry.Triangle.GetPoint(System.Single,System.Single)">
+            <summary>
+            Returns the point parameterised by t0 and t1
+            </summary>
+            <param name="t0"></param>
+            <param name="t1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Triangle.GetSpan(System.Single@,System.Single@,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Gets the minimum and maximum extents of the triangle along the axis
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <param name="axis"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Triangle.GetSpan(System.Single@,System.Single@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Gets the minimum and maximum extents of the triangle along the axis
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <param name="axis"></param>
+        </member>
+        <member name="P:JigLibX.Geometry.Triangle.Edge2">
+            <summary>
+            Edge2 goes from pt1 to pt2
+            </summary>
+        </member>
+        <member name="P:JigLibX.Geometry.Triangle.Plane">
+            <summary>
+            Gets the plane containing the triangle
+            </summary>
+        </member>
+        <member name="P:JigLibX.Geometry.Triangle.Normal">
+            <summary>
+            Gets the triangle normal. If degenerate it will be normalised, but
+            the direction may be wrong!
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectCapsuleStaticMesh">
+            <summary>
+            DetectFunctor for CapsuleStaticMesh collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsuleStaticMesh.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectCapsuleStaticMesh.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectCapsuleCapsule">
+            <summary>
+            DetectFunctor for CapsuleCapsule collison detection.
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectSphereHeightmap">
+            <summary>
+            DetectFunctor for SphereHeightmap collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereHeightmap.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereHeightmap.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="infoOrig"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectSphereBox">
+            <summary>
+            DetectFunctor for SphereBox collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSphereBox.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="infoOrig"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectSpherePlane">
+            <summary>
+            DetectFunctor for SpherePlane  collison detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSpherePlane.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectSpherePlane.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSkin">
+            <summary>
+            Some skins may be owned by a physical body too.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.AddPrimitive(JigLibX.Geometry.Primitive,System.Int32,JigLibX.Collision.MaterialProperties)">
+            <summary>
+            Adds a primitive to this collision skin - the primitive is
+            copied (so you can pass in something on the stack, or delete
+            the original) - perhaps using reference counting.  Returns the
+            primitive index, or -1 if failure Also takes that material ID
+            and the properties used when a collision ID is USER_DEFINED
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.RemoveAllPrimitives">
+            <summary>
+            Removes and destroys all primitives
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetPrimitiveLocal(System.Int32)">
+            <summary>
+            Gets the primitive in local space
+            </summary>
+            <param name="prim"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetPrimitiveOldWorld(System.Int32)">
+            <summary>
+            Gets the old value of primitive in world space 
+            </summary>
+            <param name="prim"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetPrimitiveNewWorld(System.Int32)">
+            <summary>
+            Gets the new value of primitive in world space
+            </summary>
+            <param name="prim"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetMaterialID(System.Int32)">
+            <summary>
+            Gets the material ID for a primitive 
+            </summary>
+            <param name="prim"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetMaterialProperties(System.Int32)">
+            <summary>
+            Returns the material properties for a primitive
+            </summary>
+            <param name="prim"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.SetMaterialProperties(System.Int32,JigLibX.Collision.MaterialProperties)">
+            <summary>
+            Sets the material properties for a primitive. In this case the
+            material ID will be automatically set to USER_DEFINED
+            </summary>
+            <param name="prim"></param>
+            <param name="matProperties"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetVolume">
+            <summary>
+            returns the total volume
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetSurfaceArea">
+            <summary>
+            returns the total surface area
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.SetNewTransform(JigLibX.Math.Transform@)">
+            <summary>
+            these get called during the collision detection
+            </summary>
+            <param name="transform"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.ApplyLocalTransform(JigLibX.Math.Transform)">
+            <summary>
+            Applies a transform to the local primitives (e.g. to shift
+            everything after calculating CoM etc)
+            </summary>
+            <param name="transform"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.UpdateWorldBoundingBox">
+            <summary>
+            Updates bounding volume of this skin 
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.SegmentIntersect(System.Single@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@,JigLibX.Geometry.Segment)">
+            <summary>
+            Every skin must support a ray/segment intersection test -
+            operates on the new value of the primitives
+            </summary>
+            <param name="frac"></param>
+            <param name="pos"></param>
+            <param name="normal"></param>
+            <param name="seg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetMassProperties(JigLibX.Geometry.PrimitiveProperties,System.Single@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@)">
+            <summary>
+            Helper to calculate the combined mass, centre of mass, and
+            inertia tensor about the origin and the CoM (for the local
+            primitives) primitiveProperties indicates the properties used
+            for all primitives - so the mass is the total mass
+            </summary>
+            <param name="primitiveProperties"></param>
+            <param name="mass"></param>
+            <param name="centerOfMass"></param>
+            <param name="inertiaTensor"></param>
+            <param name="inertiaTensorCoM"></param>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionSkin.GetMassProperties(JigLibX.Geometry.PrimitiveProperties[],System.Single@,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@)">
+            <summary>
+            Helper to calculate the combined mass, centre of mass, and
+            inertia tensor about the origin and the CoM (for the local
+            primitives) primitiveProperties is an array of properties -
+            must be the same number as there are primitives
+            </summary>
+            <param name="primitiveProperties"></param>
+            <param name="mass"></param>
+            <param name="centerOfMass"></param>
+            <param name="inertiaTensor"></param>
+            <param name="inertiaTensorCoM"></param>
+        </member>
+        <member name="P:JigLibX.Collision.CollisionSkin.Owner">
+            <summary>
+            Get or Set the owner of a skin.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Collision.CollisionSkin.NumPrimitives">
+            <summary>
+            Returns the number of registered primitives
+            </summary>
+        </member>
+        <member name="P:JigLibX.Collision.CollisionSkin.Collisions">
+            <summary>
+            Intended for internal use by Physics - we get told about the
+            collisions we're involved with. Used to resolve penetrations.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Collision.CollisionSkin.NonCollidables">
+            <summary>
+            Each skin can contain a list of other skins it shouldn't
+            collide with. You only need to add skins from another "family"
+            - i.e.  don't explicitly add children/parents
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.Octree.CreateAABox(Microsoft.Xna.Framework.BoundingBox,JigLibX.Geometry.Octree.EChild)">
+            <summary>
+            Create a bounding box appropriate for a child, based on a parents AABox
+            </summary>
+            <param name="aabb"></param>
+            <param name="child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Octree.GetVertex(System.Int32)">
+            <summary>
+            Get a vertex
+            </summary>
+            <param name="iVertex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:JigLibX.Geometry.Octree.NumTriangles">
+            <summary>
+            Gets the number of triangles
+            </summary>
+        </member>
+        <member name="T:JigLibX.Geometry.Octree.EChild">
+            <summary>
+            endices into the children - P means "plus" and M means "minus" and the
+            letters are xyz. So PPM means +ve x, +ve y, -ve z
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.MaterialTable">
+            <summary>
+            This handles the properties of interactions between different
+            materials.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.#ctor">
+            <summary>
+            On construction all the default Materials get added
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.Reset">
+            <summary>
+            Clear everything except the default Materials
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.Clear">
+            <summary>
+            Clear everything
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.SetMaterialProperties(System.Int32,JigLibX.Collision.MaterialProperties)">
+            <summary>
+            This adds/overrides a material, and sets all the pairs for
+            existing materials using some sensible heuristic
+            </summary>
+            <param name="id"></param>
+            <param name="properties"></param>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.GetMaterialProperties(System.Int32)">
+            <summary>
+            Returns properties of a material - defaults on inelastic
+            frictionless.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.GetPairProperties(System.Int32,System.Int32)">
+            <summary>
+            Gets the properties for a pair of materials. Same result even
+            if the two ids are swapped
+            </summary>
+            <param name="id1"></param>
+            <param name="id2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.MaterialTable.SetMaterialPairProperties(System.Int32,System.Int32,JigLibX.Collision.MaterialPairProperties)">
+            <summary>
+            This overrides the result for a single pair of materials. It's
+            recommended that you add all materials first. Order of ids
+            doesn't matter
+            </summary>
+            <param name="id1"></param>
+            <param name="id2"></param>
+            <param name="pairProperties"></param>
+        </member>
+        <member name="T:JigLibX.Collision.MaterialTable.MaterialID">
+            <summary>
+            Some default materials that get added automatically User
+            materials should start at NumMaterialTypes, or else
+            ignore this and over-ride everything. User-refined values can
+            get used so should not assume the values come form this enum -
+            use MaterialID
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionSystemSAP">
+            <summary>
+            Implementing a collision system (broad-phase test) based on the sweep-and-prune 
+            algorithm
+            </summary>
+        </member>
+        <member name="F:JigLibX.Vehicles.Wheel.pos">
+            local mount position
+        </member>
+        <member name="F:JigLibX.Vehicles.Wheel.angVelForGrip">
+            used to estimate the friction
+        </member>
+        <member name="M:JigLibX.Vehicles.Wheel.Reset">
+            <summary>
+            sets everything that varies to a default
+            </summary>
+        </member>
+        <member name="M:JigLibX.Vehicles.Wheel.AddForcesToCar(System.Single)">
+            <summary> // TODO teting testing testing ...
+            Adds the forces die to this wheel to the parent. Return value indicates if it's
+            on the ground.
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Vehicles.Wheel.Update(System.Single)">
+            <summary>
+            Updates the rotational state etc
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:JigLibX.Vehicles.Wheel.AddTorque(System.Single)">
+            <summary>
+            power
+            </summary>
+            <param name="torque"></param>
+        </member>
+        <member name="P:JigLibX.Vehicles.Wheel.SteerAngle">
+            <summary>
+            get steering angle in degrees
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Wheel.Lock">
+            <summary>
+            lock/unlock the wheel
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Wheel.Pos">
+            <summary>
+            the basic origin position
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Wheel.LocalAxisUp">
+            <summary>
+            the suspension axis in the car's frame
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Wheel.Radius">
+            <summary>
+            wheel radius
+            </summary>
+        </member>
+        <member name="P:JigLibX.Vehicles.Wheel.Displacement">
+            <summary>
+            the displacement along our up axis
+            </summary>
+        </member>
+        <member name="T:JigLibX.Vehicles.WheelPred">
+            Predicate for the wheel->world intersection test
+        </member>
+        <member name="T:JigLibX.Geometry.Heightmap">
+            <summary>
+            Defines a heightmap that has up in the "y" direction 
+            </summary>
+            <remarks>
+            indexs go from "bottom right" - i.e. (0, 0) -> (xmin, ymin)
+            heights/normals are obtained by interpolation over triangles,
+            with each quad being divided up in the same way - the diagonal
+            going from (i, j) to (i+1, j+1)    
+            </remarks>
+        </member>
+        <member name="M:JigLibX.Geometry.Heightmap.#ctor(JigLibX.Utils.Array2D,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            pass in an array of heights, and the axis that represents up
+            Also the centre of the heightmap (assuming z is up), and the grid size
+            </summary>
+            <param name="heights"></param>
+            <param name="x0"></param>
+            <param name="y0"></param>
+            <param name="dx"></param>
+            <param name="dy"></param>
+        </member>
+        <member name="M:JigLibX.Geometry.Heightmap.RecalculateBoundingBox">
+            <summary>
+            Call this after changing heights. So the bounding
+            box for collision detection gets recalculated.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Geometry.Heightmap.GetHeight(System.Int32,System.Int32)">
+            <summary>
+            Get the height at a particular index, indices are clamped
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Heightmap.GetNormal(System.Int32,System.Int32)">
+            <summary>
+            Get the normal
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Geometry.Heightmap.GetHeightAndNormal(System.Single@,Microsoft.Xna.Framework.Vector3@,System.Int32,System.Int32)">
+            <summary>
+            get height and normal (quicker than calling both)
+            </summary>
+            <param name="h"></param>
+            <param name="normal"></param>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="T:JigLibX.Physics.PhysicsSystem">
+             <summary>
+            Looks after (but doesn't own) a collection of bodies and runs
+            their updates. Doesn't deal with collision detection - it will
+            get passes a collision detector to do that.
+            In the vast majority of cases there will be only one physics system,
+            and it is consequently very annoying if every object has to keep
+            track of which physics system it's associated with. Therefore,
+            PhysicsSystem supports a "singleton" style use, but it also lets
+            the user change the "current" physics system (bad things will
+            happen if you set it to zero whilst there are still physical objects!).
+            If you want more than one physics system, then in your update loop set
+            the physics system to the first one, run physics, then set it to
+            the second one etc.
+            Note that the physics system constructor and destructor will set the
+            current physics system variable, so under normal circumstances you don't
+            need to worry about this.
+             </summary>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.#ctor">
+            <summary>
+            Initializes a new PhysicSystem and makes it the current one.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.AddConstraint(JigLibX.Physics.Constraint)">
+            <summary>
+            Adds a constraint to the simulation.
+            </summary>
+            <param name="constraint">Constraint which should be added.</param>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.RemoveConstraint(JigLibX.Physics.Constraint)">
+            <summary>
+            Removes a constraint form the simulation.
+            </summary>
+            <param name="constraint">The constraint which should be removed.</param>
+            <returns>True if the constraint was successfully removed.</returns>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.AddController(JigLibX.Physics.Controller)">
+            <summary>
+            Add a controller to the simulation.
+            </summary>
+            <param name="controller">Controller which should be added.</param>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.RemoveController(JigLibX.Physics.Controller)">
+            <summary>
+            Removes a Controller from the simulation.
+            </summary>
+            <param name="controller">The Controller which should be removed.</param>
+            <returns>True if the Controller was successfully removed.</returns>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.AddBody(JigLibX.Physics.Body)">
+            <summary>
+            Adds the body to the Physic- and the CollisionSystem
+            </summary>
+            <param name="body">Body which should be added to the simulation.</param>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.RemoveBody(JigLibX.Physics.Body)">
+            <summary>
+            Removes the body from the Physic- and the CollisionSystem
+            </summary>
+            <param name="body">Body which should be removed form the simulation</param>
+            <returns>True if the Body was successfully removed.</returns>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.FindConnected(JigLibX.Physics.Body,JigLibX.Physics.CollisionIsland)">
+            <summary>
+            Finds recursivly all bodies which are touching each other and
+            adds them to a list.
+            </summary>
+            <param name="body">The body with which to start</param>
+            <param name="island">The island contains the bodies which are in contact with
+            each other</param>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.Integrate(System.Single)">
+            <summary>
+            Integrates the system forwards by dt - the caller is
+            responsible for making sure that repeated calls to this use
+            the same dt (if desired)
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.Bodies">
+            <summary>
+            Returns a readonly collection of all Bodies registered. To add or remove Bodies
+            use AddBody or RemoveBody.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.Constraints">
+            <summary>
+            Returns a readonly collection of all Constraints registered. To add or remove 
+            Constraints use AddConstraint or RemoveConstraint.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.Controllers">
+            <summary>
+            Returns a readonly collection of all Controllers registered. To add or remove 
+            Controllers use AddController or RemoveController.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.CurrentPhysicsSystem">
+            <summary>
+            Gets the current PhysicSystem.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.CollisionSystem">
+            <summary>
+            If there is to be any collision detection, this physics system
+            needs to know how to collide objects. In the absence of a
+            collision system, no collisions will occur (surprise
+            surprise).
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.TargetTime">
+            <summary>
+            Get the physics idea of the time we're advancing towards.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.OldTime">
+            <summary>
+            Gets the physics idea of the time we've left behind
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.NumCollisionIterations">
+            <summary>
+            Number of iterations done in the collision step of the solver.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.NumContactIterations">
+            <summary>
+            Number of iterations done in the contact step of the solver.
+            </summary>
+        </member>
+        <member name="P:JigLibX.Physics.PhysicsSystem.NullUpdate">
+            <summary>
+            if nullUpdate then all updates will use dt = 0 (for debugging/profiling)
+            </summary>
+        </member>
+        <member name="M:JigLibX.Physics.PhysicsSystem.Contact.BodyPair.#ctor(JigLibX.Physics.Body,JigLibX.Physics.Body,Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>
+            Only the bodies are used for the
+            comparison-
+            Note that bodyB is likely to be null.
+            </summary>
+            <param name="bodyA"></param>
+            <param name="bodyB"></param>
+            <param name="rA"></param>
+            <param name="rB"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectBoxPlane">
+            <summary>
+            DetectFunctor for BoxPlane collision detection.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxPlane.#ctor">
+            <summary>
+            Constructor of BoxPlane Collision DetectFunctor.
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollDetectBoxPlane.CollDetect(JigLibX.Collision.CollDetectInfo,System.Single,JigLibX.Collision.CollisionFunctor)">
+            <summary>
+            Detect BoxPlane Collisions.
+            </summary>
+            <param name="info"></param>
+            <param name="collTolerance"></param>
+            <param name="collisionFunctor"></param>
+        </member>
+        <member name="T:JigLibX.Collision.CollDetectInfo">
+            <summary>
+            Details about which parts of the skins are colliding.
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.SmallCollPointInfo.InitialPenetration">
+            <summary>
+            Estimated Penetration before the objects collide (can be -ve)
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.SmallCollPointInfo.R0">
+            <summary>
+            Positions relative to body 0 (in world space)
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.SmallCollPointInfo.R1">
+            <summary>
+            positions relative to body 1 (if there is a body1)
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.CollPointInfo.MinSeparationVel">
+            <summary>
+            Used by physics to cache desired minimum separation velocity
+            in the normal direction
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.CollPointInfo.Denominator">
+            <summary>
+            Used by physics to cache value used in calculating impulse
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.CollPointInfo.AccumulatedNormalImpulse">
+            <summary>
+            Used by physics to accumulated the normal impulse
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.CollPointInfo.AccumulatedFrictionImpulse">
+            <summary>
+            Used by physics to accumulated the normal impulse
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.CollPointInfo.AccumulatedNormalImpulseAux">
+            <summary>
+            Used by physics to accumulated the normal impulse
+            </summary>
+        </member>
+        <member name="F:JigLibX.Collision.CollPointInfo.Position">
+            <summary>
+            Used by physics to cache the world position (not really
+            needed? pretty useful in debugging!)
+            </summary>
+        </member>
+        <member name="T:JigLibX.Collision.CollisionInfo">
+            <summary>
+            Contains all the details about a collision between two skins,
+            each of which may be associated with a tBody.  Each collision
+            can have a number of points associated with it
+            </summary>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionInfo.GetCollisionInfo(JigLibX.Collision.CollDetectInfo,Microsoft.Xna.Framework.Vector3,JigLibX.Collision.SmallCollPointInfo*,System.Int32)">
+            <summary>
+            CollisionInfos will be given out from a pool.  If more than
+            MaxCollisionPoints are passed in, the input positions will
+            be silently truncated!
+            </summary>
+            <param name="info"></param>
+            <param name="dirToBody0"></param>
+            <param name="pointInfos"></param>
+            <param name="numPointInfos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JigLibX.Collision.CollisionInfo.FreeCollisionInfo(JigLibX.Collision.CollisionInfo)">
+            <summary>
+            Return this info to the pool.
+            </summary>
+            <param name="info"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralDocumentToken xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <ComponentToken>
+      <ParentGuid>66712f3b-863a-46a6-83ba-e25c387d18e7</ParentGuid>
+      <Guid>26690542-9baa-4f16-821d-8c8eb97f5c51</Guid>
+      <Name>Component:26690542-9baa-4f16-821d-8c8eb97f5c51</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>66712f3b-863a-46a6-83ba-e25c387d18e7</ParentGuid>
+      <Guid>41b7f1ae-926f-4035-81cb-4fd1a1cb0452</Guid>
+      <Name>Component:41b7f1ae-926f-4035-81cb-4fd1a1cb0452</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>66712f3b-863a-46a6-83ba-e25c387d18e7</ParentGuid>
+      <Guid>a59d30c6-1266-4790-b43d-6dce8edcf526</Guid>
+      <Name>Component:a59d30c6-1266-4790-b43d-6dce8edcf526</Name>
+    </ComponentToken>
+    <ComponentToken>
+      <ParentGuid>66712f3b-863a-46a6-83ba-e25c387d18e7</ParentGuid>
+      <Guid>22b50aee-a1cb-434d-8b19-3a36275a5839</Guid>
+      <Name>Component:22b50aee-a1cb-434d-8b19-3a36275a5839</Name>
+    </ComponentToken>
+  </Components>
+  <Groups>
+    <GroupToken>
+      <ParentGuid xsi:nil="true" />
+      <Guid>66712f3b-863a-46a6-83ba-e25c387d18e7</Guid>
+      <Name>Group:66712f3b-863a-46a6-83ba-e25c387d18e7</Name>
+    </GroupToken>
+  </Groups>
+</GeneralDocumentToken>

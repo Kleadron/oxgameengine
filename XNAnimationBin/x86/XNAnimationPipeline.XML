@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XNAnimationPipeline</name>
+    </assembly>
+    <members>
+        <member name="T:XNAnimationPipeline.Pipeline.SkinnedModelProcessor">
+             <summary>
+             This class will be instantiated by the XNA Framework Content Pipeline
+             to apply custom processing to content data, converting an object of
+             type TInput to TOutput. The input and output types may be the same if
+             the processor wishes to alter data without changing its type.
+            
+             This should be part of a Content Pipeline Extension Library project.
+            
+             </summary>
+        </member>
+        <member name="M:XNAnimationPipeline.Pipeline.SkinnedModelProcessor.ProcessMaterials(Microsoft.Xna.Framework.Content.Pipeline.Graphics.NodeContent,Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext)">
+            <summary>
+            Traverses the model's mesh parts and processes each of its materials.
+            Although the materials can be shared between multiple mesh parts, each material is 
+            processed one unique time.
+            </summary>
+            <param name="node">The root node of the model.</param>
+            <param name="context">The content processor context.</param>
+        </member>
+        <member name="M:XNAnimationPipeline.Pipeline.SkinnedModelProcessor.ProcessMaterials(Microsoft.Xna.Framework.Content.Pipeline.Graphics.NodeContent,System.Collections.Generic.Dictionary{Microsoft.Xna.Framework.Content.Pipeline.Graphics.MaterialContent,Microsoft.Xna.Framework.Content.Pipeline.Graphics.MaterialContent},Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext)">
+            <summary>
+            Traverses the model's mesh parts and processes each of its materials.
+            Although the materials can be shared between multiple mesh parts, each material is 
+            processed one unique time.
+            </summary>
+            <param name="node">The root node of the model.</param>
+            <param name="processedMaterials">Dictionary used to store the processed materials.</param>
+            <param name="context">The content processor context.</param>
+        </member>
+        <member name="M:XNAnimationPipeline.Pipeline.SkinnedModelProcessor.ProcessMaterial(Microsoft.Xna.Framework.Content.Pipeline.Graphics.MaterialContent,Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext)">
+            <summary>
+            Processes the material of each MeshPart in a model.
+            </summary>
+            <param name="materialContent">The material to be processed.</param>
+            <param name="context">The content processor context.</param>
+            <returns>The processed material.</returns>
+        </member>
+        <member name="M:XNAnimationPipeline.Pipeline.SkinnedModelProcessor.ProcessBones(Microsoft.Xna.Framework.Content.Pipeline.Graphics.BoneContent,Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext)">
+            <summary>
+            Extract and processes all the bones (BoneContent) of the model generating a 
+            SkinnedModelBoneCollection.
+            </summary>
+            <param name="rootBone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XNAnimationPipeline.Pipeline.SkinnedModelProcessor.ProcessBones(Microsoft.Xna.Framework.Content.Pipeline.Graphics.BoneContent,XNAnimationPipeline.SkinnedModelBoneContent,System.Collections.Generic.List{XNAnimationPipeline.SkinnedModelBoneContent},Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext)">
+            <summary>
+            Recursively process each BoneContent of the model generating a new SkinnedModelBone
+            </summary>
+            <param name="boneContent"></param>
+            <param name="skinnedBoneList"></param>
+            <param name="skinnedModelParentBone"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
